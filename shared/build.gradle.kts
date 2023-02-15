@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.apollographql.apollo3")
+    id("org.jetbrains.compose") version "1.4.0"
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("co.touchlab.faktory.kmmbridge")
@@ -62,6 +65,13 @@ kotlin {
 
                 // Multiplatform Logging
                 api(libs.napier)
+
+                implementation(compose.ui)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation("org.jetbrains.compose.components:components-resources:1.4.0")
+                api("io.github.qdsfdhvh:image-loader:1.3.1")
             }
         }
         val commonTest by getting {
@@ -115,11 +125,16 @@ kotlin {
             }
         }
     }
+
+
 }
 
 android {
     compileSdk = AndroidSdk.compile
+
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
     defaultConfig {
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target

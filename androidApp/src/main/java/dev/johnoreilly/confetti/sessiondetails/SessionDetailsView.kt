@@ -4,6 +4,7 @@ package dev.johnoreilly.confetti.sessiondetails
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -41,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -51,6 +53,8 @@ import dev.johnoreilly.confetti.auth.Authentication
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.speakerdetails.navigation.SpeakerDetailsKey
 import dev.johnoreilly.confetti.ui.Bookmark
+import dev.johnoreilly.confetti.ui.SessionDetailViewSharedWrapper
+import dev.johnoreilly.confetti.ui.SessionSpeakerInfoViewSharedWrapper
 import dev.johnoreilly.confetti.ui.SignInDialog
 import dev.johnoreilly.confetti.ui.component.ConfettiHeader
 import dev.johnoreilly.confetti.utils.format
@@ -96,6 +100,8 @@ fun SessionDetailsRoute(
             onSpeakerClick(SpeakerDetailsKey(conference = conference, speakerId = speakerId))
         }
     )
+
+    //SessionDetailViewSharedWrapper(session, {})
 }
 
 @Composable
@@ -215,13 +221,33 @@ fun SessionDetailView(
                     Spacer(modifier = Modifier.size(16.dp))
 
                     session.speakers.forEach { speaker ->
-                        SessionSpeakerInfo(speaker = speaker.speakerDetails,
-                            onSocialLinkClick = { socialItem, _ ->
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.url))
-                                context.startActivity(intent)
-                            },
-                            onSpeakerClick = onSpeakerClick
-                        )
+//                        SessionSpeakerInfo(speaker = speaker.speakerDetails,
+//                            onSocialLinkClick = { socialItem, _ ->
+//                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(socialItem.url))
+//                                context.startActivity(intent)
+//                            },
+//                            onSpeakerClick = onSpeakerClick
+//                        )
+
+                        Column(
+                            Modifier
+                                .clickable(role = Role.Button) {
+                                    onSpeakerClick(speaker.id)
+                                }
+                                .padding(top = 16.dp, bottom = 8.dp)
+                                .padding(horizontal = 16.dp)) {
+
+                            SessionSpeakerInfoViewSharedWrapper(speaker = speaker.speakerDetails,
+                                socialLinkClicked = { urlString ->
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
+                                    context.startActivity(intent)
+                                }
+                            )
+
+
+                        }
+
+
                     }
                 }
             }

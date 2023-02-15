@@ -12,7 +12,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.People
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,11 +25,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import dev.johnoreilly.confetti.GetConferencesQuery
 import dev.johnoreilly.confetti.R
 import dev.johnoreilly.confetti.SpeakerDetailsViewModel
+import dev.johnoreilly.confetti.conferences.ConferencesView
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
 import dev.johnoreilly.confetti.sessiondetails.navigation.SessionDetailsKey
 import dev.johnoreilly.confetti.speakerdetails.navigation.SpeakerDetailsKey
@@ -197,4 +199,22 @@ fun SpeakerTalks(
             }
         }
     }
+}
+
+
+@Preview()
+@Composable
+private fun ConferencesViewPreview() {
+    //ConfettiTheme {
+        //ConfettiBackground {
+            ConferencesView(
+                conferenceList = listOf(
+                    GetConferencesQuery.Conference("0", "", emptyList(), "Droidcon San Francisco 2022"),
+                    GetConferencesQuery.Conference("1", "", emptyList(), "FrenchKit 2022"),
+                    GetConferencesQuery.Conference("2", "", emptyList(), "Droidcon London 2022"),
+                    GetConferencesQuery.Conference("3", "", emptyList(), "DevFest Ukraine 2023"),
+                )
+            ) {}
+        //}
+    //}
 }

@@ -19,6 +19,10 @@
 		1A8F349129C4DC0400327F0A /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A8F349029C4DC0400327F0A /* KMPNativeCoroutinesCore */; };
 		1A8F349329C4DC0A00327F0A /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A8F349229C4DC0A00327F0A /* KMMViewModelCore */; };
 		1A8F349529C4DC0A00327F0A /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A8F349429C4DC0A00327F0A /* KMMViewModelSwiftUI */; };
+		1A9C6BCD29FE6EF00095FA5C /* web.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C6BC929FE6EEF0095FA5C /* web.xml */; };
+		1A9C6BCE29FE6EF00095FA5C /* twitter.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C6BCA29FE6EF00095FA5C /* twitter.xml */; };
+		1A9C6BCF29FE6EF00095FA5C /* linkedin.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C6BCB29FE6EF00095FA5C /* linkedin.xml */; };
+		1A9C6BD029FE6EF00095FA5C /* facebook.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C6BCC29FE6EF00095FA5C /* facebook.xml */; };
 		1AE9649829463EE40080CE1F /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE9649729463EE40080CE1F /* KMPNativeCoroutinesAsync */; };
 		1AE9649A29463EE40080CE1F /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE9649929463EE40080CE1F /* KMPNativeCoroutinesCore */; };
 		1AEAB76C28FBF52D00B06D90 /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEAB76B28FBF52D00B06D90 /* SwiftUIFlowLayout */; };
@@ -61,6 +65,10 @@
 		1A70920A294E666E00DAF22F /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
 		1A8F347729C4BA1900327F0A /* ConfettiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConfettiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A8F347929C4BA1A00327F0A /* ConfettiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiTests.swift; sourceTree = "<group>"; };
+		1A9C6BC929FE6EEF0095FA5C /* web.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = web.xml; sourceTree = "<group>"; };
+		1A9C6BCA29FE6EF00095FA5C /* twitter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = twitter.xml; sourceTree = "<group>"; };
+		1A9C6BCB29FE6EF00095FA5C /* linkedin.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = linkedin.xml; sourceTree = "<group>"; };
+		1A9C6BCC29FE6EF00095FA5C /* facebook.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = facebook.xml; sourceTree = "<group>"; };
 		1AEAB76D28FDB69F00B06D90 /* SessionSpeakerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSpeakerInfo.swift; sourceTree = "<group>"; };
 		1AF675CB28F1F1F100CC1C26 /* SpeakerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerListView.swift; sourceTree = "<group>"; };
 		1AF675CD28F1F1FE00CC1C26 /* SpeakerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerDetailsView.swift; sourceTree = "<group>"; };
@@ -159,6 +167,10 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				1A9C6BCC29FE6EF00095FA5C /* facebook.xml */,
+				1A9C6BCB29FE6EF00095FA5C /* linkedin.xml */,
+				1A9C6BCA29FE6EF00095FA5C /* twitter.xml */,
+				1A9C6BC929FE6EEF0095FA5C /* web.xml */,
 				1A70920A294E666E00DAF22F /* KMMViewModel.swift */,
 				1AF675CA28F1F0F300CC1C26 /* Speakers */,
 				1AF675C928F1F06800CC1C26 /* Sessions */,
@@ -291,6 +303,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9C6BCD29FE6EF00095FA5C /* web.xml in Resources */,
+				1A9C6BCF29FE6EF00095FA5C /* linkedin.xml in Resources */,
+				1A9C6BCE29FE6EF00095FA5C /* twitter.xml in Resources */,
+				1A9C6BD029FE6EF00095FA5C /* facebook.xml in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
@@ -461,6 +477,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = Confetti;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -516,6 +533,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = Confetti;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

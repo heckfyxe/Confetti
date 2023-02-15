@@ -36,6 +36,8 @@ import androidx.compose.ui.window.rememberWindowState
 import com.apollographql.apollo3.cache.normalized.FetchPolicy
 import com.seiko.imageloader.rememberAsyncImagePainter
 import dev.johnoreilly.confetti.ConfettiRepository
+import dev.johnoreilly.confetti.dev.johnoreilly.confetti.ui.SessionDetailViewSharedWrapper
+import dev.johnoreilly.confetti.dev.johnoreilly.confetti.ui.SessionSpeakerInfoViewSharedWrapper
 import dev.johnoreilly.confetti.di.initKoin
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
@@ -46,6 +48,8 @@ import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.TimeZone.Companion.currentSystemDefault
+import java.awt.Desktop
+import java.net.URI
 
 
 private val koin = initKoin().koin
@@ -91,6 +95,7 @@ fun MainLayout() {
                 }
             }
         }
+
         SessionDetailView(currentSession.value)
     }
 }
@@ -160,13 +165,14 @@ fun SessionDetailView(session: SessionDetails?) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp)
-                    .verticalScroll(state = scrollState)
+                    //.verticalScroll(state = scrollState)
             ) {
+                //SessionDetailViewSharedWrapper(session, {})
 
                 Text(
                     text = session.title,
                     color = MaterialTheme.colors.primary,
-                    style = MaterialTheme.typography.h4
+                    style = MaterialTheme.typography.h5
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -178,8 +184,13 @@ fun SessionDetailView(session: SessionDetails?) {
 
                 Spacer(modifier = Modifier.size(16.dp))
                 session.speakers.forEach { speaker ->
-                    SessionSpeakerInfo(speaker = speaker.speakerDetails)
+                    //SessionSpeakerInfo(speaker = speaker.speakerDetails)
+                    SessionSpeakerInfoViewSharedWrapper(speaker.speakerDetails) { url ->
+                        Desktop.getDesktop().browse(URI(url))
+                    }
                 }
+
+
             }
         }
     }
